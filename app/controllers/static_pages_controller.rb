@@ -6,5 +6,9 @@ class StaticPagesController < ApplicationController
   def property
     @data = { property_id: params[:id] }.to_json
     render 'property'
-end
+  end
+
+  def login
+    render 'login'
+  end
 end
