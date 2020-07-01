@@ -24,6 +24,14 @@ module Api
       render 'api/bookings/index'
     end
 
+    def get_user_bookings
+      user = User.find_by(username: params[:username])
+      return render json: { error: 'cannot find user' }, status: :not_found if !user
+
+      @bookings = user.bookings
+      render 'api/bookings/index'
+    end
+
     private
 
     def booking_params

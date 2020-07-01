@@ -7,15 +7,13 @@ import { handleErrors } from '@utils/fetchHelper';
 import './home.scss';
 
 class Home extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      properties: [],
-      total_pages: null,
-      next_page: null,
-      loading: true,
-    }
+  state = {
+    properties: [],
+    total_pages: null,
+    next_page: null,
+    loading: true,
   }
+
   componentDidMount() {
     fetch('/api/properties?page=1')
       .then(handleErrors)
@@ -53,7 +51,7 @@ class Home extends React.Component {
       <Layout>
         <div className="container pt-4">
           <h4 className="mb-1">Top-rated places to stay</h4>
-          <p className="text-secondary mb-3">Explore some of the best-reviewed stys in the world</p>
+          <p className="text-secondary mb-3">Explore some of the best-reviewed stays in the world</p>
           <div className="row">
             {properties.map(property => {
               return (
