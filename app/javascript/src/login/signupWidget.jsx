@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { safeCredentials, handleErrors } from '@utils/fetchHelper';
 
 class SignupWidget extends React.Component {
@@ -33,6 +34,7 @@ class SignupWidget extends React.Component {
     }))
       .then(handleErrors)
       .then(data => {
+        console.log(data);
         if (data.user) {
           this.login();
         }
@@ -49,7 +51,6 @@ class SignupWidget extends React.Component {
     this.setState({
       error: ''
     });
-
     fetch('/api/sessions', safeCredentials({
       method: 'POST',
       body: JSON.stringify({
@@ -61,9 +62,12 @@ class SignupWidget extends React.Component {
     }))
       .then(handleErrors)
       .then(data => {
-        const params = new URLSearchParams(window.location.search);
-        const reirect_url = params.get('redirect_url') || '/';
-        window.location = redirect_url;
+        if (data.success) {
+          const params = new URLSearchParams(window.location.search);
+          const redirect_url = params.get('redirect_url') || '/';
+          window.location = redirect_url;
+          console.log(redirect_url);
+        }
       })
       .catch(error => {
         this.setState({

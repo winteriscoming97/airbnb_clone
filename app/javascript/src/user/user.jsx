@@ -13,17 +13,6 @@ class User extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/authenticated')
-      .then(handleErrors)
-      .then(data => {
-        this.setState({
-          authenticated: data.authenticated,
-        })
-      })
-      this.getProperties();
-    }
-
-  getProperties() {
     fetch(`/api/${this.props.user.username}/properties`)
       .then(handleErrors)
       .then(data => {
@@ -31,9 +20,8 @@ class User extends React.Component {
           properties: data.properties,
           loading: false
         });
-        console.log(data);
       })
-  }
+    }
 
   listProperties(properties) {
     if (properties.length > 0) {
@@ -60,22 +48,25 @@ class User extends React.Component {
   render () {
     let { user } = this.props;
     let { loading, properties, authenticated } = this.state;
-    if (authenticated) {
+    if (user) {
       return (
         <Layout>
           <div>
-            <h1>User Homepage</h1>
-            <h3>{user.username}</h3>
-            {loading ? <h2>loading</h2> : this.listProperties(properties)}
+            <h1>{user.username}'s page</h1>
+            <h3>Checkout {user.username}'s properties</h3>
+            {loading ? <h2>loading...</h2> : this.listProperties(properties)}
           </div>
         </Layout>
       )
     }
     else {
       return (
-        <div>
-          Please <a href={`/login?redirect_url=${window.location.pathname}`}>log in</a> to view this profile.
-        </div>
+        <Layout>
+          <div>
+            <h1>User page</h1>
+            <h3>This user does not exist, make sure it is spelled correctly or return to the Homepage</h3>
+          </div>
+        </Layout>
       )
     }
   }

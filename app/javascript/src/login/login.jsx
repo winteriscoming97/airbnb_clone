@@ -32,7 +32,19 @@ class Login extends React.Component {
     const { authenticated, show_login } = this.state;
     if (authenticated) {
       return (
-        <Layout>
+        <div>
+          <nav className="navbar navbar-expand navbar-light bg-light">
+            <a href="/"><span className="navbar-brand mb-0 h1 text-danger">Airbnb</span></a>
+
+            <div className="collapse navbar-collapse">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <a className="nav-link" href="/">Home</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
           <div className="container">
             <div className="row">
               <div className="col-12 col-md-9 col-lg-6 mx-auto my-4">
@@ -42,12 +54,31 @@ class Login extends React.Component {
               </div>
             </div>
           </div>
-        </Layout>
+
+          <footer className="p-3 bg-light">
+            <div>
+              <p className="mr-3 mb-0 text-secondary">Airbnb Clone</p>
+            </div>
+          </footer>
+        </div>
+
       )
     }
 
     return (
-      <Layout>
+      <div>
+        <nav className="navbar navbar-expand navbar-light bg-light">
+          <a href="/"><span className="navbar-brand mb-0 h1 text-danger">Airbnb</span></a>
+
+          <div className="collapse navbar-collapse">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <a className="nav-link" href="/">Home</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-9 col-lg-6 mx-auto my-4">
@@ -57,7 +88,13 @@ class Login extends React.Component {
             </div>
           </div>
         </div>
-      </Layout>
+
+        <footer className="p-3 bg-light">
+          <div>
+            <p className="mr-3 mb-0 text-secondary">Airbnb Clone</p>
+          </div>
+        </footer>
+      </div>
     )
   }
 }
