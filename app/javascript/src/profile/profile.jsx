@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from '@src/layout';
+import PropertyWidget from './propertyWidget';
 import { handleErrors } from '@utils/fetchHelper';
 
 import './profile.scss';
@@ -21,7 +22,6 @@ class Profile extends React.Component {
         this.setState({
           authenticated: data.authenticated
         })
-        console.log(user);
       })
       .then(() => {
         this.getProperties(user);
@@ -56,8 +56,10 @@ class Profile extends React.Component {
 
       return (
         <Layout>
-          {authenticated ? <div><h1>Welcome User!</h1></div> : <div><h4>You are not logged in.</h4><p><small>Please <a href={`login?redirect_url=${window.location.pathname}`} rel="noreferrer">Log-in or Sign-up</a> to view your profile</small></p></div>}
-          {user && <div><h1>{user.username}</h1></div>}
+          {authenticated ? <div><h1>Welcome {user.username}</h1></div> : <div><h4>You are not logged in.</h4><p><small>Please <a href={`login?redirect_url=${window.location.pathname}`} rel="noreferrer">Log-in or Sign-up</a> to view your profile</small></p></div>}
+          <div className="container">
+            <PropertyWidget/>
+          </div>
         </Layout>
       )
   }

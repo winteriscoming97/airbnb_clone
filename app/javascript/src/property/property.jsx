@@ -54,7 +54,7 @@ class Property extends React.Component {
               <div className="mb-3">
                 <h3 className="mb-0">{title}</h3>
                 <p className="text-uppercase mb-0 text-secondary"><small>{city}</small></p>
-                <p className="mb-0"><small>Hosted by <a href={`/${user.username}`} rel="noreferrer"><b>{user.username}</b></a></small></p>
+                <p className="mb-0"><small>Hosted by <a href={`/users/${user.username}`} rel="noreferrer"><b>{user.username}</b></a></small></p>
               </div>
               <div>
                 <p className="mb-0 text-capitalize"><b>{property_type}</b></p>

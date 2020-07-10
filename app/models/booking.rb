@@ -1,7 +1,8 @@
 class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :property
-  has_many :charges 
+  has_many :charges
+  has_one_attached :image
 
   validates :start_date, presence: true
   validates :end_date, presence: true
@@ -17,6 +18,10 @@ class Booking < ApplicationRecord
       raise ArgumentError.new("start date cannot be larger than end date")
     end
   end
+
+  def is_paid?
+  self.charges.pluck(:complete).include?(true)
+end
 
   def check_availability
     overlapped_bookings = self.property.bookings.where("start_date < ? AND end_date > ? ", self.end_date, self.start_date)

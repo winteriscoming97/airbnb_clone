@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let user = node.getAttribute('data-params');
   node.remove();
   ReactDOM.render(
-    <Profile user={user}/>,
+    <Profile user={JSON.parse(user).user}/>,
 
     document.body.appendChild(document.createElement('div'))
   )

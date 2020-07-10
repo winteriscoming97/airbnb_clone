@@ -3,7 +3,7 @@ module Api
     def create
       property = Property.new(propery_params);
       if property.save
-        render 'api/properties/show', status: :created
+        render 'api/properties/create', status: :created
       else
         render json: { error: 'invalid_params' }, status: :bad_request
       end
@@ -36,7 +36,7 @@ module Api
     private
 
     def property_params
-      params.require(:property).permit(:title, :description, :city, :country, :property_type, :price_per_night, :max_guests, :bedrooms, :beds, :baths, :image_url, :amenities, :neighborhood, :policies)
+      params.require(:property).permit(:title, :description, :city, :country, :property_type, :price_per_night, :max_guests, :bedrooms, :beds, :baths, :image, :amenities, :neighborhood, :policies)
     end
   end
 end

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/login' => 'static_pages#login'
   get '/users/:username' => 'static_pages#user'
   get '/profile' => 'static_pages#profile'
+  #Successful Stripe Transaction
+  get '/booking/:id/success' => 'static_pages#success'
 
 
   namespace :api do

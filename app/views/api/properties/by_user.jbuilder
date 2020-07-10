@@ -9,6 +9,7 @@ json.properties do
     json.policies property.policies
     json.neighborhood property.neighborhood
     json.price_per_night property.price_per_night
-    json.image_url property.image_url
+    json.image_url property.image if property.image
+    json.image_url url_for(property.image) if property.image.attached?
   end
 end

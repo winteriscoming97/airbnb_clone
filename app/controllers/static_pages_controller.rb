@@ -22,10 +22,16 @@ class StaticPagesController < ApplicationController
   def profile
     token = cookies.signed[:airbnb_session_token]
     session = Session.find_by(token: token)
-    return render json: { error: 'user_not_found' }, status: :not_found if !session
+    return render 'login', status: :unauthorized if !session
     user = session.user
     @data = { user: user }.to_json
     return render json: { error: 'user_not_found' }, status: :not_found if !@data
     render 'profile'
+  end
+
+  def success
+    @data = Booking.find_by(id: params[:id]);
+    return render json: { success: false }, status: :bad_request if !@data
+    render 'success'
   end
 end

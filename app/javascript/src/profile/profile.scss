@@ -1,0 +1,21 @@
+.property-image {
+  align-self: flex-start;
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  @media (min-width: 768px) {
+    height: 400px;
+  }
+}
+
+.price-input {
+  position: relative;
+  input {
+    padding-left: 15px;
+  }
+  span {
+    position: absolute;
+    left: 5px;
+    top: 10%;
+  }
+}
